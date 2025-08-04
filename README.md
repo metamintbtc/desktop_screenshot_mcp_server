@@ -13,12 +13,26 @@ A modern **Model Context Protocol (MCP) Server** for Windows Screenshots built w
 
 ## 🛠️ Installation
 
-### One-Click Install in VS Code:
-```
-vscode:mcp/install?{"name":"screenshot-mcp-server","gallery":true,"command":"dotnet","args":["run","--project","https://github.com/metamintbtc/desktop_screenshot_mcp_server.git"],"url":"https://github.com/metamintbtc/desktop_screenshot_mcp_server","env":{}}
+### ⚡ One-Click Install via UVX (Recommended)
+
+Copy this URL and paste it in your browser:
+
+```text
+vscode:mcp/install?{"name":"screenshot-mcp-server","gallery":true,"command":"uvx","args":["screenshot-mcp-server"]}
 ```
 
-### Manual Installation via Git
+### 🔧 Manual UVX Installation
+
+```bash
+# Install UV (if not already installed)
+pip install uv
+
+# Run Screenshot MCP Server
+uvx screenshot-mcp-server
+```
+
+### 📦 Alternative: Manual Installation via Git
+
 ```bash
 git clone https://github.com/metamintbtc/desktop_screenshot_mcp_server.git
 cd desktop_screenshot_mcp_server

@@ -35,15 +35,17 @@ public static class ScreenshotTool
             
             graphics.CopyFromScreen(x, y, 0, 0, new Size(width, height));
 
-            // Speichere im aktuellen Arbeitsverzeichnis (Workspace)
+            // Speichere im aktuellen Workspace (für Copilot-Zugriff)
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             string filename = $"screenshot_{timestamp}.png";
+            
+            // Bestimme aktuelles Arbeitsverzeichnis (VS Code Workspace)
             string workspaceDir = Directory.GetCurrentDirectory();
             string filepath = Path.Combine(workspaceDir, filename);
             
             bitmap.Save(filepath, ImageFormat.Png);
 
-            return $"✅ Screenshot aller Bildschirme erfolgreich gespeichert!\n📁 Pfad: {filepath}\n📐 Größe: {width}x{height} Pixel\n🖥️ Virtueller Desktop von ({x},{y}) erfasst";
+            return $"✅ Screenshot aller Bildschirme erfolgreich gespeichert!\n📁 Pfad: {filepath}\n📐 Größe: {width}x{height} Pixel\n🖥️ Virtueller Desktop von ({x},{y}) erfasst\n💡 Hinweis: Screenshot wurde im aktuellen Workspace gespeichert";
         }
         catch (Exception ex)
         {
@@ -67,12 +69,25 @@ public static class ScreenshotTool
 
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
             string filename = $"primary_screenshot_{timestamp}.png";
+            
+            // Bestimme Workspace-Verzeichnis (VS Code arbeitet normalerweise hier)
             string workspaceDir = Directory.GetCurrentDirectory();
+            
+            // Falls wir nicht im gewünschten Workspace sind, verwende das Verzeichnis des aktuellen Prozesses
+            if (!Directory.Exists(Path.Combine(workspaceDir, ".vscode")) && 
+                !File.Exists(Path.Combine(workspaceDir, "package.json")) &&
+                !File.Exists(Path.Combine(workspaceDir, "*.sln")) &&
+                !File.Exists(Path.Combine(workspaceDir, "*.csproj")))
+            {
+                // Fallback: Verwende das Verzeichnis, in dem der MCP Server liegt
+                workspaceDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? workspaceDir;
+            }
+            
             string filepath = Path.Combine(workspaceDir, filename);
             
             bitmap.Save(filepath, ImageFormat.Png);
 
-            return $"✅ Primärer Bildschirm-Screenshot erfolgreich gespeichert!\n📁 Pfad: {filepath}\n📐 Größe: {width}x{height} Pixel";
+            return $"✅ Primärer Bildschirm-Screenshot erfolgreich gespeichert!\n📁 Pfad: {filepath}\n📐 Größe: {width}x{height} Pixel\n💡 Hinweis: Screenshot wurde im aktuellen Workspace gespeichert";
         }
         catch (Exception ex)
         {
