@@ -26,7 +26,24 @@ dotnet build
 ```
 
 ### VS Code MCP Configuration
-Add to your VS Code settings:
+
+#### Option A: Traditional mcp.json
+Create `mcp.json` in your workspace or VS Code user directory:
+```json
+{
+  "mcpServers": {
+    "screenshot-mcp-server": {
+      "command": "dotnet",
+      "args": ["run", "--project", "H:\\Screenshot_mcp\\ScreenshotMcpServer.csproj"],
+      "description": "Windows Screenshot MCP Server",
+      "env": {}
+    }
+  }
+}
+```
+
+#### Option B: VS Code Settings
+Add to your VS Code settings.json:
 ```json
 {
   "github.copilot.chat.mcp.servers": {
