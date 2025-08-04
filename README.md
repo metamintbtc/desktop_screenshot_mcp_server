@@ -1,128 +1,136 @@
 # Screenshot MCP Server 📸
 
-Ein hochmoderner **Model Context Protocol (MCP) Server** für Windows-Screenshots, entwickelt mit **.NET 10**. Dieser Server simuliert die **Print Screen** Funktionalität und ermöglicht es AI-Assistenten, Screenshots zu erstellen.
+A modern **Model Context Protocol (MCP) Server** for Windows Screenshots built with **.NET 10**. This server simulates **Print Screen** functionality and enables AI assistants to capture screenshots.
 
 ## ✨ Features
 
-- 🖥️ **Multi-Monitor Support**: Screenshots aller Bildschirme gleichzeitig
-- 🎯 **Primärer Bildschirm**: Screenshots nur des Hauptbildschirms  
-- 📊 **Bildschirm-Info**: Detaillierte Informationen über alle Displays
-- 🚀 **Print Screen Simulation**: Genau wie die Windows Print Screen Taste
-- 💾 **Workspace Integration**: Screenshots werden im aktuellen Workspace gespeichert
-- ⚡ **State-of-the-Art**: Neueste .NET 10 Technologie
+- 🖥️ **Multi-Monitor Support**: Capture all screens simultaneously
+- 🎯 **Primary Screen**: Screenshots of main display only  
+- 📊 **Screen Info**: Detailed information about all displays
+- 🚀 **Print Screen Simulation**: Just like the Windows Print Screen key
+- 💾 **Desktop Integration**: Screenshots saved to Desktop with timestamps
+- ⚡ **State-of-the-Art**: Latest .NET 10 technology
 
 ## 🛠️ Installation
 
-### Über NPM (Empfohlen)
-```bash
-npm install -g screenshot-mcp-server
+### One-Click Install in VS Code:
+```
+vscode:mcp/install?{"name":"screenshot-mcp-server","gallery":true,"command":"dotnet","args":["run","--project","https://github.com/metamintbtc/desktop_screenshot_mcp_server.git"],"url":"https://github.com/metamintbtc/desktop_screenshot_mcp_server","env":{}}
 ```
 
-### Manuell via Git
+### Manual Installation via Git
 ```bash
-git clone https://github.com/yourusername/screenshot-mcp-server.git
-cd screenshot-mcp-server
+git clone https://github.com/metamintbtc/desktop_screenshot_mcp_server.git
+cd desktop_screenshot_mcp_server
 dotnet build
 ```
 
-## 🚀 Verwendung
-
-### In VS Code mit GitHub Copilot
-
-1. **MCP Server konfigurieren** in VS Code Settings:
+### VS Code MCP Configuration
+Add to your VS Code settings:
 ```json
 {
   "github.copilot.chat.mcp.servers": {
     "screenshot-mcp-server": {
       "command": "dotnet",
-      "args": ["run", "--project", "ScreenshotMcpServer.csproj"],
+      "args": ["run", "--project", "H:\\Screenshot_mcp\\ScreenshotMcpServer.csproj"],
       "description": "Windows Screenshot Server"
     }
   }
 }
 ```
 
-2. **Server starten**:
-   - Öffnen Sie die Command Palette (`F1`)
-   - Suchen Sie nach "MCP: List Servers"
-   - Wählen Sie "screenshot-mcp-server"
+## 🚀 Usage
 
-### Verfügbare Tools
+### In VS Code with GitHub Copilot
+
+Simply ask Copilot in natural language:
+- *"Take a screenshot of all my screens"*
+- *"Capture just the primary monitor"*  
+- *"Show me information about my displays"*
+- *"Simulate pressing Print Screen"*
+
+### Available Tools
 
 #### 📸 `TakeScreenshot`
-Macht einen Screenshot aller Bildschirme (simuliert Print Screen)
-```
-Erfasst alle Monitore gleichzeitig
-Speichert als PNG im aktuellen Workspace
-Dateiname: screenshot_2025-08-04_18-59-30.png
+Captures all screens (simulates Print Screen)
+
+```text
+Captures all monitors simultaneously
+Saves as PNG to Desktop with timestamp
+Filename: screenshot_2025-08-04_18-59-30.png
 ```
 
 #### 🎯 `TakePrimaryScreenshot`  
-Macht einen Screenshot nur vom primären Bildschirm
-```
-Erfasst nur den Hauptmonitor
-Ideal für fokussierte Screenshots
-Dateiname: primary_screenshot_2025-08-04_18-59-30.png
+Captures only the primary screen
+
+```text
+Captures main monitor only
+Perfect for focused screenshots
+Filename: primary_screenshot_2025-08-04_18-59-30.png
 ```
 
 #### 📊 `GetScreenInfo`
-Zeigt detaillierte Informationen über alle Bildschirme
-```
-- Anzahl der Monitore
-- Auflösungen und Positionen  
-- Virtueller Desktop Größe
+Shows detailed information about all displays
+
+```text
+- Number of monitors
+- Resolutions and positions  
+- Virtual desktop size
 ```
 
 #### ⌨️ `SimulatePrintScreen`
-Emuliert exakt den Windows Print Screen Tastendruck
+Emulates exactly the Windows Print Screen key press
 
-## 💻 Systemanforderungen
+## 💻 System Requirements
 
 - **OS**: Windows 10/11 (x64)
-- **.NET**: .NET 10.0 oder höher
-- **RAM**: Mindestens 512 MB
-- **Storage**: 50 MB freier Speicherplatz
+- **.NET**: .NET 10.0 or higher
+- **RAM**: Minimum 512 MB
+- **Storage**: 50 MB free space
 
-## 🔧 Entwicklung
+## 🔧 Development
 
 ### Build
+
 ```bash
 dotnet build ScreenshotMcpServer.csproj
 ```
 
 ### Run  
+
 ```bash
 dotnet run --project ScreenshotMcpServer.csproj
 ```
 
 ### Publish
+
 ```bash
 dotnet publish -c Release -o ./dist
 ```
 
-## 📁 Projekt Struktur
+## 📁 Project Structure
 
 ```
 screenshot-mcp-server/
-├── Program.cs              # Haupteinstiegspunkt
-├── ScreenshotTool.cs      # Screenshot-Funktionalität
-├── ScreenshotMcpServer.csproj # .NET Projekt
-├── package.json           # NPM Konfiguration
-├── README.md             # Diese Datei
-└── bin/                  # Compilierte Binaries
+├── Program.cs              # Main entry point
+├── ScreenshotTool.cs      # Screenshot functionality
+├── ScreenshotMcpServer.csproj # .NET project
+├── package.json           # NPM configuration
+├── README.md             # This file
+└── bin/                  # Compiled binaries
 ```
 
 ## 🤝 Contributing
 
-1. Fork das Repository
-2. Erstelle einen Feature Branch (`git checkout -b feature/amazing-feature`)
-3. Commit deine Änderungen (`git commit -m 'Add amazing feature'`)
-4. Push zum Branch (`git push origin feature/amazing-feature`)  
-5. Öffne einen Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)  
+5. Open a Pull Request
 
-## 📄 Lizenz
+## 📄 License
 
-Dieses Projekt ist unter der MIT Lizenz veröffentlicht. Siehe [LICENSE](LICENSE) für Details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## 🔗 Links
 
@@ -132,10 +140,10 @@ Dieses Projekt ist unter der MIT Lizenz veröffentlicht. Siehe [LICENSE](LICENSE
 
 ## 🆘 Support
 
-Bei Problemen oder Fragen:
-- 📧 Email: info@screenshot-mcp.dev
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/screenshot-mcp-server/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/screenshot-mcp-server/discussions)
+For issues or questions:
+
+- 🐛 Issues: [GitHub Issues](https://github.com/metamintbtc/desktop_screenshot_mcp_server/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/metamintbtc/desktop_screenshot_mcp_server/discussions)
 
 ---
 

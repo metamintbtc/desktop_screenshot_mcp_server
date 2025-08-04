@@ -1,53 +1,80 @@
 {
   "name": "screenshot-mcp-server",
+  "displayName": "Screenshot MCP Server",
+  "description": "Windows Screenshot MCP Server - Capture all screens or primary screen with Print Screen simulation",
   "version": "1.0.0",
-  "description": "Ein .NET MCP Server für Screenshots unter Windows - simuliert Print Screen Funktionalität",
-  "main": "bin/Debug/net10.0-windows/ScreenshotMcpServer.exe",
-  "bin": {
-    "screenshot-mcp-server": "./bin/Debug/net10.0-windows/ScreenshotMcpServer.exe"
+  "publisher": "metamintbtc",
+  "engines": {
+    "vscode": "^1.96.0"
   },
-  "scripts": {
-    "build": "dotnet build ScreenshotMcpServer.csproj -c Release",
-    "start": "dotnet run --project ScreenshotMcpServer.csproj",
-    "publish": "dotnet publish ScreenshotMcpServer.csproj -c Release -o ./dist",
-    "prepare": "npm run build"
-  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
   "keywords": [
     "mcp",
-    "screenshot", 
+    "screenshot",
+    "print screen",
+    "multi-monitor",
     "windows",
-    "dotnet",
-    "model-context-protocol",
-    "print-screen",
-    "copilot",
-    "vscode"
+    "copilot"
   ],
-  "author": {
-    "name": "Screenshot MCP Team",
-    "email": "info@screenshot-mcp.dev"
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "mcpServers": {
+      "screenshot-mcp-server": {
+        "command": "dotnet",
+        "args": [
+          "run",
+          "--project",
+          "./ScreenshotMcpServer.csproj"
+        ],
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
+    },
+    "configuration": {
+      "title": "Screenshot MCP Server",
+      "properties": {
+        "screenshotMcp.saveLocation": {
+          "type": "string",
+          "default": "desktop",
+          "enum": ["desktop", "workspace", "custom"],
+          "description": "Where to save screenshots"
+        },
+        "screenshotMcp.imageFormat": {
+          "type": "string",
+          "default": "png",
+          "enum": ["png", "jpg", "bmp"],
+          "description": "Screenshot image format"
+        }
+      }
+    }
   },
-  "license": "MIT",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "build": "dotnet build ScreenshotMcpServer.csproj -c Release",
+    "start": "dotnet run --project ScreenshotMcpServer.csproj"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/node": "22.x",
+    "typescript": "^5.7.2",
+    "vsce": "^2.15.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/screenshot-mcp-server.git"
+    "url": "https://github.com/metamintbtc/desktop_screenshot_mcp_server.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/screenshot-mcp-server/issues"
+    "url": "https://github.com/metamintbtc/desktop_screenshot_mcp_server/issues"
   },
-  "homepage": "https://github.com/yourusername/screenshot-mcp-server#readme",
-  "os": ["win32"],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "files": [
-    "bin/",
-    "dist/",
-    "README.md",
-    "LICENSE"
-  ],
-  "mcpServer": {
-    "command": "dotnet",
-    "args": ["run", "--project", "ScreenshotMcpServer.csproj"],
-    "description": "Windows Screenshot MCP Server - Simuliert Print Screen für alle Bildschirme"
-  }
+  "homepage": "https://github.com/metamintbtc/desktop_screenshot_mcp_server#readme",
+  "license": "MIT",
+  "icon": "icon.png"
 }
